@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<title>Employee management</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h1 class="title">Employee management</h1>
+
+<h:form>
+	<h:outputText value="Fix Problems Below" styleClass="error" rendered="#{not empty facesContext.messageList}"/>
+	
+	<h:panelGrid columns="3" styleClass="formTable">
+		First Name: 
+		<h:inputText value="#{ec.firstName}" id="fname" 
+					 required="true" 
+					 requiredMessage="Please enter your First Name"
+					 validatorMessage="First Name must be longer than 2 letters">
+					 <f:validateLength minimum="2"/>
+		</h:inputText>
+		<h:message for="fname"/>
+		Middle Name: 
+		<h:inputText value="#{ec.middleName}" id="mname"/>
+		<h:outputText/>
+		Last Name: 
+		<h:inputText value="#{ec.lastName}" id="lname" 
+					 required="true" 
+					 requiredMessage="Please enter your Last Name"
+					 validatorMessage="First Name must be longer than 3 letters">
+					 <f:validateLength minimum="3"/>
+		</h:inputText>
+		<h:message for="lname"/>
+		ID: 
+		<h:inputText value="#{ec.id}" id="id" 
+					 required="true" 
+					 requiredMessage="Please enter your ID"
+					 validatorMessage="ID must be 1 letter followed by 4 numbers">
+					 <f:validateRegex pattern="\w\d\d\d\d"/>
+		</h:inputText>
+		<h:message for="id"/>
+		Building Number: 
+		<h:inputText value="#{ec.buildingNumber}" id="buildingNumber"
+					 required="true"
+					 requiredMessage="Please enter your Building Number"
+					 converterMessage="Building Number must be a number"
+					 validatorMessage="Building number must be whole number from 1 to 50">
+					 <f:validateLongRange minimum="1" maximum="50"/>
+		</h:inputText>
+		<h:message for="buildingNumber"/>
+		<h:outputText/>
+		<h:commandButton value="Send" action="#{ec.enter}"/>
+	</h:panelGrid>
+</h:form>
+
+</h:body></html>
